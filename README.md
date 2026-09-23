@@ -46,6 +46,61 @@ Estimate the PSD of the signal, either directly using a method like Welch’s pe
 
 Visualize the autocorrelation function and PSD.
 
+## CODE
+clc;
+clear;
+close;
+
+// Time
+t = 0:0.01:6;
+
+// Analog signal
+x = sin(2*%pi*0.7*t);
+
+// Autocorrelation
+Rxx = xcorr(x,x);
+
+// PSD
+PSD = abs(fft(x)).^2;
+
+// Frequency
+f = 0:length(PSD)-1;
+
+// Plot 1 - Original signal
+subplot(3,2,1);
+plot(t,x);
+xlabel("Time");
+ylabel("Amplitude");
+title("Analog Signal");
+
+// Plot 2 - Autocorrelation
+subplot(3,2,2);
+plot(Rxx);
+xlabel("Samples");
+ylabel("Amplitude");
+title("Autocorrelation");
+
+// Plot 3 - PSD
+subplot(3,2,3);
+plot(f,PSD);
+xlabel("Frequency");
+ylabel("Power");
+title("Power Spectral Density");
+
+// Plot 4 - Autocorrelation waveform
+subplot(3,2,4);
+plot(Rxx);
+xlabel("Lag");
+ylabel("Rxx");
+title("Autocorrelation");
+
+// Plot 5 - Frequency spectrum
+subplot(3,2,5);
+plot(f,PSD);
+xlabel("Frequency");
+ylabel("Power");
+title("PSD");
+
 ## PROCEDURE
 
 - Refer Algorithms and write code for the experiment.
